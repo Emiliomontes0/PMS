@@ -1,0 +1,22 @@
+.body{
+    display: flex;
+    width: auto;
+    flex-direction:column;
+    background-color:#0c192c;
+}
+.card{
+    display: flex;
+    justify-self: left;
+    padding: 0px 0px 0px 0px;
+    background-color: #0c192c;
+    border: 1px solid rgb(255, 255, 255);
+}
+.return{
+    background-color: black;
+    color: white;
+    text-align: center;
+    border-color: black;
+    border-radius: 5px;
+    padding: 25px 60px 15px 50px;
+    display: flex;
+}

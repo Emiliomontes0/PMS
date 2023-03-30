@@ -1,0 +1,60 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing:border-box;
+    height: auto;
+}
+.btn-group-vertical{
+}
+.body{
+    display: flex;
+    width: auto;
+    flex-direction:column;
+    background-color:#0c192c;
+}
+.navbar{
+
+}
+.btn{/*from boot strap dont keep full name just type*/
+    background-color: black;
+    text-align: left;
+    padding: 25px 10px 15px 50px;
+    display: flex;
+}
+.row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
+}
+.text-center{
+    color: white;
+}
+.pmn{
+    color: white;
+}
+.card{
+    display: flex;
+    justify-self: left;
+    padding: 0px 0px 0px 0px;
+    background-color: #0c192c;
+    border: 1px solid rgb(255, 255, 255);
+}
+.button{
+    background-color: black;
+    border: 0px;
+    padding: 20px;
+    display: flex;
+    color: white;
+}
+.return{
+    display: flex;
+    background-color: rgba(137, 9, 9, 0.689);
+    border: 0px;
+    padding: 20px;
+    display: flex;
+    color: white;
+}
+.textbtn{
+    color: white;
+}
