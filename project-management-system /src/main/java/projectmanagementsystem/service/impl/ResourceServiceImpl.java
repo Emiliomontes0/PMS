@@ -1,35 +1,35 @@
 package projectmanagementsystem.service.impl;
-
-import projectmanagementsystem.entity.Task;
-import projectmanagementsystem.repository.TaskRepository;
-import projectmanagementsystem.service.TaskService;
+import org.springframework.stereotype.Service;
+import projectmanagementsystem.entity.Resource;
+import projectmanagementsystem.repository.ResourceRepository;
+import projectmanagementsystem.service.ResourceService;
 
 import java.util.List;
+@Service
+public class ResourceServiceImpl implements ResourceService{
+    private ResourceRepository resourceRepository;
 
-public class ResourceServiceImpl implements TaskService{
-    private TaskRepository taskRepository;
-
-    public ResourceServiceImpl(TaskRepository taskRepository) {
+    public ResourceServiceImpl(ResourceRepository resourceRepository) {
         super();
-        this.taskRepository = taskRepository;
+        this.resourceRepository = resourceRepository;
     }
     @Override
-    public List<Task> getAllTasks(){
-        return taskRepository.findAll();
+    public List<Resource> getAllResources(){
+        return resourceRepository.findAll();
     }
     @Override
-    public Task saveTasks(Task task){
-        return taskRepository.save(task);
+    public Resource saveResources(Resource task){
+        return resourceRepository.save(task);
     }
     @Override
-    public Task getTaskById(Long id){
-        return taskRepository.findById(id).get();
+    public Resource getResourceById(Long id){
+        return resourceRepository.findById(id).get();
     }
-    public Task updateTask(Task task){
-        return taskRepository.save(task);
+    public Resource updateResource(Resource task){
+        return resourceRepository.save(task);
     }
     @Override
-    public void deleteTaskById(Long id){
-        taskRepository.deleteById(id);
+    public void deleteResourceById(Long id){
+        resourceRepository.deleteById(id);
     }
 }

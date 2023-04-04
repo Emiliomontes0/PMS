@@ -35,3 +35,13 @@
     padding: 25px 60px 15px 50px;
     display: flex;
 }
+.return{
+    display: flex;
+    background-color: transparent;
+    border: 0px;
+    padding: 20px;
+    color: white;
+}
+.textbtn{
+    color: white;
+}

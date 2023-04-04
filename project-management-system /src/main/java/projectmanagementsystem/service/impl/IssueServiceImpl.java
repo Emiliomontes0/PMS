@@ -1,35 +1,35 @@
 package projectmanagementsystem.service.impl;
-
-import projectmanagementsystem.entity.Task;
-import projectmanagementsystem.repository.TaskRepository;
-import projectmanagementsystem.service.TaskService;
+import org.springframework.stereotype.Service;
+import projectmanagementsystem.entity.Issue;
+import projectmanagementsystem.repository.IssueRepository;
+import projectmanagementsystem.service.IssueService;
 
 import java.util.List;
+@Service
+public class IssueServiceImpl implements IssueService{
+    private IssueRepository issueRepository;
 
-public class IssueServiceImpl implements TaskService{
-    private TaskRepository taskRepository;
-
-    public IssueServiceImpl(TaskRepository taskRepository) {
+    public IssueServiceImpl(IssueRepository issueRepository) {
         super();
-        this.taskRepository = taskRepository;
+        this.issueRepository = issueRepository;
     }
     @Override
-    public List<Task> getAllTasks(){
-        return taskRepository.findAll();
+    public List<Issue> getAllIssues(){
+        return issueRepository.findAll();
     }
     @Override
-    public Task saveTasks(Task task){
-        return taskRepository.save(task);
+    public Issue saveIssues(Issue issue){
+        return issueRepository.save(issue);
     }
     @Override
-    public Task getTaskById(Long id){
-        return taskRepository.findById(id).get();
+    public Issue getIssueById(Long id){
+        return issueRepository.findById(id).get();
     }
-    public Task updateTask(Task task){
-        return taskRepository.save(task);
+    public Issue updateIssue(Issue issue){
+        return issueRepository.save(issue);
     }
     @Override
-    public void deleteTaskById(Long id){
-        taskRepository.deleteById(id);
+    public void deleteIssueById(Long id){
+        issueRepository.deleteById(id);
     }
 }

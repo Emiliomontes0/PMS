@@ -8,16 +8,16 @@ public class Decision {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "issue_name", nullable = false)
-    private String issue_name;
+    @Column(name = "decision_name", nullable = false)
+    private String decision_name;
     @Column(name = "description")
     private String description;
 
     public Decision (){
 
     }
-    public Decision(String issue_name, String description){
-        this.issue_name = issue_name;
+    public Decision(String decision_name, String description){
+        this.decision_name = decision_name;
         this.description = description;
     }
 
@@ -29,12 +29,12 @@ public class Decision {
         this.description = description;
     }
 
-    public String getIssue_name() {
-        return issue_name;
+    public String getDecision_name() {
+        return decision_name;
     }
 
-    public void setIssue_name(String issue_name) {
-        this.issue_name = issue_name;
+    public void setDecision_name(String decision_name) {
+        this.decision_name = decision_name;
     }
 
     public long getId() {

@@ -1,11 +1,12 @@
 package projectmanagementsystem.service.impl;
 
+import org.springframework.stereotype.Service;
 import projectmanagementsystem.entity.Action_item;
 import projectmanagementsystem.repository.Action_itemRepository;
 import projectmanagementsystem.service.Action_itemService;
 
 import java.util.List;
-
+@Service
 public class Action_itemServiceImpl implements Action_itemService{
     private Action_itemRepository action_itemRepository;
 

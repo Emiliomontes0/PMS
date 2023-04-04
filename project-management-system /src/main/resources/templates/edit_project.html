@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/create_styles.css}">
+
 </head>
 <body class ="body">
 <nav class="navbar navbar-expand-md bg-dark navbar-dark">
@@ -31,13 +33,30 @@
 <br>
 <div class = "row">
     <div class="btn-group-vertical" role="group" aria-label="Basic example">
-        <button type="button" class="btn btn-secondary">Requirements</button>
-        <button type="button" class="btn btn-secondary">Task</button>
-        <button type="button" class="btn btn-secondary">Action Items</button>
-        <button type="button" class="btn btn-secondary">Issues</button>
-        <button type="button" class="btn btn-secondary">Decisions</button>
-        <button type="button" class="btn btn-secondary">Risk</button>
-        <button type="button" class="btn btn-secondary">Resources</button>
+        <a th:href = "@{/projects/edit/requirements}">
+            <button type="button" class="btn btn-secondary" >Requirements</button>
+        </a>
+        <a th:href = "@{/projects/edit/tasks}">
+            <button type="button" class="btn btn-secondary"><pre class = "textbtn">Task        </pre></button>
+        </a>
+        <a th:href = "@{/projects/edit/action_items}">
+            <button type="button" class="btn btn-secondary"><pre class = "textbtn">Action Items</pre></button>
+        </a>
+        <a th:href = "@{/projects/edit/issues}">
+            <button type="button" class="btn btn-secondary"><pre class = "textbtn">Issues      </pre></button>
+        </a>
+        <a th:href = "@{/projects/edit/decisions}">
+            <button type="button" class="btn btn-secondary"><pre class ="textbtn">Decisions   </pre></button>
+        </a>
+        <a th:href = "@{/projects/edit/risks}">
+            <button type="button" class="btn btn-secondary"><pre class = "textbtn">Risk        </pre></button>
+        </a>
+        <a th:href = "@{/projects/edit/resources}">
+            <button type="button" class="btn btn-secondary"><pre class = "textbtn">Resources   </pre></button>
+        </a>
+        <form>
+            <input type="button" class = "return" value="Return     " onclick="history.go(-1)">
+        </form>
     </div>
     <div class = "col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
         <h1 Class = "text-center">Update Project</h1>

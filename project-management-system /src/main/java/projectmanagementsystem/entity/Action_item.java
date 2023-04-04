@@ -9,15 +9,15 @@ public class Action_item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "action_name", nullable = false)
-    private String action_name;
+    private String action_item_name;
     @Column(name = "description")
     private String description;
     public Action_item(){
 
     }
-    public Action_item(String action_name, String description){
+    public Action_item(String action_item_name, String description){
         super();
-        this.action_name = action_name;
+        this.action_item_name = action_item_name;
         this.description = description;
     }
 
@@ -29,12 +29,12 @@ public class Action_item {
         this.description = description;
     }
 
-    public String getAction_name() {
-        return action_name;
+    public String getAction_item_name() {
+        return action_item_name;
     }
 
-    public void setAction_name(String action_name) {
-        this.action_name = action_name;
+    public void setAction_item_name(String action_item_name) {
+        this.action_item_name = action_item_name;
     }
 
     public long getId() {

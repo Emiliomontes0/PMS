@@ -24,7 +24,7 @@
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/projects/new/requirements}">Project Management</a>
+                <a class="nav-link" th:href="@{/projects}">Project Management</a>
             </li>
         </ul>
     </div>
@@ -38,21 +38,32 @@
 
     <div class = "row">
         <div class = col-lg-3>
-            <a th:href = "@{/projects/new/requirements/new}" class = "btn1 btn-primary btn-sm mb-3"> Add requirement</a>
+            <a th:href = "@{/projects/edit/requirements/new}" class = "btn1 btn-primary btn-sm mb-3"> Add requirement</a>
         </div>
     </div>
     <div class = "bodyTable">
         <div class="btn-group-vertical" role="group" aria-label="Basic example">
-            <button type="button" class="btn btn-secondary btn-black">Requirements</button>
-            <button type="button" class="btn btn-secondary">Task</button>
-            <button type="button" class="btn btn-secondary">Action Items</button>
-            <button type="button" class="btn btn-secondary">Issues</button>
-            <button type="button" class="btn btn-secondary">Decisions</button>
-            <button type="button" class="btn btn-secondary">Risk</button>
-            <button type="button" class="btn btn-secondary">Resources</button>
-            <form>
-                <input type="button" class = "btn4" value="Return" onclick="history.go(-1)">
-            </form>
+            <a th:href = "@{/projects/edit/requirements}">
+                <button type="button" class="btn btn-secondary" >Requirements</button>
+            </a>
+            <a th:href = "@{/projects/edit/tasks}">
+                <button type="button" class="btn btn-secondary"><pre class = "textbtn">Task        </pre></button>
+            </a>
+            <a th:href = "@{/projects/edit/action_items}">
+                <button type="button" class="btn btn-secondary"><pre class = "textbtn">Action Items</pre></button>
+            </a>
+            <a th:href = "@{/projects/edit/issues}">
+                <button type="button" class="btn btn-secondary"><pre class = "textbtn">Issues      </pre></button>
+            </a>
+            <a th:href = "@{/projects/edit/decisions}">
+                <button type="button" class="btn btn-secondary"><pre class ="textbtn">Decisions   </pre></button>
+            </a>
+            <a th:href = "@{/projects/edit/risks}">
+                <button type="button" class="btn btn-secondary"><pre class = "textbtn">Risk        </pre></button>
+            </a>
+            <a th:href = "@{/projects/edit/resources}">
+                <button type="button" class="btn btn-secondary"><pre class = "textbtn">Resources   </pre></button>
+            </a>
         </div>
         <table class = "table table-striped table-bordered table-dark">
             <thead>
@@ -73,8 +84,8 @@
 
             <td>
 
-                <a th:href = "@{/projects/new/requirements/edit/{id}(id=${requirement.id})}" class = "btn2 btn-primary">Update</a>
-                <a th:href = "@{/projects/new/requirements/{id}(id=${requirement.id})}" class = "btn3 btn-danger">Delete</a>
+                <a th:href = "@{/projects/edit/requirements/edit/{id}(id=${requirement.id})}" class = "btn2 btn-primary">Update</a>
+                <a th:href = "@{/projects/edit/requirements/{id}(id=${requirement.id})}" class = "btn3 btn-danger">Delete</a>
             </td>
         </tr>
 

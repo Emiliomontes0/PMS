@@ -2,7 +2,7 @@ package projectmanagementsystem.entity;
 
 import jakarta.persistence.*;
 import java.util.List;
-
+import java.util.ArrayList;
 @Entity
 @Table(name = "project")
 public class Project {
@@ -18,8 +18,17 @@ public class Project {
     @Column(name = "description")
     private String description;
     @OneToMany(targetEntity = Requirement.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "pr_key", referencedColumnName = "id")
-    private List<Requirement> requirement;
+    @JoinColumn(name = "pr_key", referencedColumnName = "id")//current issue is that pr_key is null and fix update and delete
+    private List<Requirement> requirement = new ArrayList<>();
+
+    public List<Requirement> getRequirement() {
+        return requirement;
+    }
+
+    public void setRequirement(List<Requirement> requirement) {
+        this.requirement = requirement;
+    }
+
     @OneToMany(targetEntity = Task.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "pt_key", referencedColumnName = "id")
     private List<Task> task;

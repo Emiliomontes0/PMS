@@ -23,7 +23,7 @@
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/projects/new/requirement}">Project Management</a>
+                <a class="nav-link" th:href="@{/projects}">Project Management</a>
             </li>
         </ul>
     </div>
@@ -32,26 +32,26 @@
 <br>
 <div class = "row">
     <div class = "col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
-        <h1 Class = "text-center">Update Project</h1>
+        <h1 Class = "text-center">Update Issue</h1>
         <div class = "card-body">
-            <form th:action="@{/projects/edit/requirements/edit/{id}(id=${requirement.id})}" th:object = "${requirement}" method = "POST">
+            <form th:action="@{/projects/edit/issues/edit/{id}(id=${issue.id})}" th:object = "${issue}" method = "POST">
 
                 <div class = "form-group">
-                    <label>Requirement Name</label>
+                    <label>Issue Name</label>
                     <input type="text"
-                           name="req_name"
-                           th:field = "*{req_name}"
+                           name="issue_name"
+                           th:field = "*{issue_name}"
                            class = "form-control"
-                           placeholder="Enter Requirement Name"/>
+                           placeholder="Enter Issue Name"/>
                 </div>
 
                 <div class = "form-group">
-                    <label>Requirement Description</label>
+                    <label>Issue Description</label>
                     <input type="text"
                            name="description"
                            th:field = "*{description}"
                            class = "form-control"
-                           placeholder="Enter Requirement description"/>
+                           placeholder="Enter Issue description"/>
                 </div>
 
                 <div class = "box-footer">

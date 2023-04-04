@@ -1,35 +1,35 @@
 package projectmanagementsystem.service.impl;
-
-import projectmanagementsystem.entity.Task;
-import projectmanagementsystem.repository.TaskRepository;
-import projectmanagementsystem.service.TaskService;
+import org.springframework.stereotype.Service;
+import projectmanagementsystem.entity.Risk;
+import projectmanagementsystem.repository.RiskRepository;
+import projectmanagementsystem.service.RiskService;
 
 import java.util.List;
+@Service
+public class RiskServiceImpl implements RiskService{
+    private RiskRepository riskRepository;
 
-public class RiskServiceImpl implements TaskService{
-    private TaskRepository taskRepository;
-
-    public RiskServiceImpl(TaskRepository taskRepository) {
+    public RiskServiceImpl(RiskRepository riskRepository) {
         super();
-        this.taskRepository = taskRepository;
+        this.riskRepository = riskRepository;
     }
     @Override
-    public List<Task> getAllTasks(){
-        return taskRepository.findAll();
+    public List<Risk> getAllRisks(){
+        return riskRepository.findAll();
     }
     @Override
-    public Task saveTasks(Task task){
-        return taskRepository.save(task);
+    public Risk saveRisks(Risk risk){
+        return riskRepository.save(risk);
     }
     @Override
-    public Task getTaskById(Long id){
-        return taskRepository.findById(id).get();
+    public Risk getRiskById(Long id){
+        return riskRepository.findById(id).get();
     }
-    public Task updateTask(Task task){
-        return taskRepository.save(task);
+    public Risk updateRisk(Risk risk){
+        return riskRepository.save(risk);
     }
     @Override
-    public void deleteTaskById(Long id){
-        taskRepository.deleteById(id);
+    public void deleteRiskById(Long id){
+        riskRepository.deleteById(id);
     }
 }

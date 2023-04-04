@@ -1,35 +1,35 @@
 package projectmanagementsystem.service.impl;
-
-import projectmanagementsystem.entity.Task;
-import projectmanagementsystem.repository.TaskRepository;
-import projectmanagementsystem.service.TaskService;
+import org.springframework.stereotype.Service;
+import projectmanagementsystem.entity.Decision;
+import projectmanagementsystem.repository.DecisionRepository;
+import projectmanagementsystem.service.DecisionService;
 
 import java.util.List;
+@Service
+public class DecisionServiceImpl implements DecisionService{
+    private DecisionRepository decisionRepository;
 
-public class DecisionServiceImpl implements TaskService{
-    private TaskRepository taskRepository;
-
-    public DecisionServiceImpl(TaskRepository taskRepository) {
+    public DecisionServiceImpl(DecisionRepository decisionRepository) {
         super();
-        this.taskRepository = taskRepository;
+        this.decisionRepository = decisionRepository;
     }
     @Override
-    public List<Task> getAllTasks(){
-        return taskRepository.findAll();
+    public List<Decision> getAllDecisions(){
+        return decisionRepository.findAll();
     }
     @Override
-    public Task saveTasks(Task task){
-        return taskRepository.save(task);
+    public Decision saveDecisions(Decision decision){
+        return decisionRepository.save(decision);
     }
     @Override
-    public Task getTaskById(Long id){
-        return taskRepository.findById(id).get();
+    public Decision getDecisionById(Long id){
+        return decisionRepository.findById(id).get();
     }
-    public Task updateTask(Task task){
-        return taskRepository.save(task);
+    public Decision updateDecision(Decision decision){
+        return decisionRepository.save(decision);
     }
     @Override
-    public void deleteTaskById(Long id){
-        taskRepository.deleteById(id);
+    public void deleteDecisionById(Long id){
+        decisionRepository.deleteById(id);
     }
 }

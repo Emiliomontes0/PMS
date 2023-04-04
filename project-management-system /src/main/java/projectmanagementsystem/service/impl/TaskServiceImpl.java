@@ -1,11 +1,11 @@
 package projectmanagementsystem.service.impl;
-
+import org.springframework.stereotype.Service;
 import projectmanagementsystem.entity.Task;
 import projectmanagementsystem.repository.TaskRepository;
 import projectmanagementsystem.service.TaskService;
 
 import java.util.List;
-
+@Service
 public class TaskServiceImpl implements TaskService{
     private TaskRepository taskRepository;
 

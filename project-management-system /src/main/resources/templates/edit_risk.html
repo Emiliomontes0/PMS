@@ -23,7 +23,7 @@
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/projects/new/requirement}">Project Management</a>
+                <a class="nav-link" th:href="@{/projects}">Project Management</a>
             </li>
         </ul>
     </div>
@@ -32,26 +32,26 @@
 <br>
 <div class = "row">
     <div class = "col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
-        <h1 Class = "text-center">Update Project</h1>
+        <h1 Class = "text-center">Update Risk</h1>
         <div class = "card-body">
-            <form th:action="@{/projects/edit/requirements/edit/{id}(id=${requirement.id})}" th:object = "${requirement}" method = "POST">
+            <form th:action="@{/projects/edit/risks/edit/{id}(id=${risk.id})}" th:object = "${risk}" method = "POST">
 
                 <div class = "form-group">
-                    <label>Requirement Name</label>
+                    <label>Risk Name</label>
                     <input type="text"
-                           name="req_name"
-                           th:field = "*{req_name}"
+                           name="risk_name"
+                           th:field = "*{risk_name}"
                            class = "form-control"
-                           placeholder="Enter Requirement Name"/>
+                           placeholder="Enter Risk Name"/>
                 </div>
 
                 <div class = "form-group">
-                    <label>Requirement Description</label>
+                    <label>Risk Description</label>
                     <input type="text"
                            name="description"
                            th:field = "*{description}"
                            class = "form-control"
-                           placeholder="Enter Requirement description"/>
+                           placeholder="Enter Risk description"/>
                 </div>
 
                 <div class = "box-footer">

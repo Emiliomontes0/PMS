@@ -29,11 +29,11 @@ public class Task {
         this.id = id;
     }
 
-    public String getTask_desc() {
+    public String getDescription() {
         return description;
     }
 
-    public void setTask_desc(String description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
