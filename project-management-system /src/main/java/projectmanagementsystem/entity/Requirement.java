@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "Requirements")
 public class Requirement {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -11,6 +12,10 @@ public class Requirement {
     private String req_name;
     @Column(name = "description")
     private String description;
+
+    @ManyToOne(cascade = CascadeType.ALL)//this is correct
+    @JoinColumn(name = "project_id", referencedColumnName = "id")//this is correct
+    private Project project;
 
     public Requirement(){
 
@@ -44,4 +49,12 @@ public class Requirement {
     public void setReq_name(String req_name) {
         this.req_name = req_name;
     }
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
 }

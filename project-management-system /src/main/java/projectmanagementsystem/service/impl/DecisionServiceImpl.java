@@ -1,16 +1,20 @@
 package projectmanagementsystem.service.impl;
 import org.springframework.stereotype.Service;
 import projectmanagementsystem.entity.Decision;
+import projectmanagementsystem.entity.Project;
 import projectmanagementsystem.repository.DecisionRepository;
+import projectmanagementsystem.repository.ProjectRepository;
 import projectmanagementsystem.service.DecisionService;
 
 import java.util.List;
 @Service
 public class DecisionServiceImpl implements DecisionService{
     private DecisionRepository decisionRepository;
+    private ProjectRepository projectRepository;
 
-    public DecisionServiceImpl(DecisionRepository decisionRepository) {
+    public DecisionServiceImpl(DecisionRepository decisionRepository, ProjectRepository projectRepository) {
         super();
+        this.projectRepository = projectRepository;
         this.decisionRepository = decisionRepository;
     }
     @Override
@@ -31,5 +35,11 @@ public class DecisionServiceImpl implements DecisionService{
     @Override
     public void deleteDecisionById(Long id){
         decisionRepository.deleteById(id);
+    }
+    @Override
+    public List<Decision> getAllDecisionsById(Long id){//this is how to display relational requirements
+        Project project = projectRepository.getById(id);
+        List<Decision> assign = project.getAssignDecision();
+        return assign;
     }
 }

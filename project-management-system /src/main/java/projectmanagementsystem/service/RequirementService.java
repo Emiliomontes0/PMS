@@ -9,4 +9,5 @@ public interface RequirementService {
     Requirement getRequirementById(Long id);
     Requirement updateRequirement(Requirement requirement);
     void deleteRequirementById(Long id);
+    List<Requirement> getAllRequirementsById(Long id);
 }

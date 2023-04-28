@@ -12,6 +12,9 @@ public class Issue {
     private String issue_name;
     @Column(name = "description")
     private String description;
+    @ManyToOne(cascade = CascadeType.ALL)//this is correct
+    @JoinColumn(name = "project_id", referencedColumnName = "id")//this is correct
+    private Project project;
 
     public Issue(){
 
@@ -43,5 +46,13 @@ public class Issue {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
     }
 }

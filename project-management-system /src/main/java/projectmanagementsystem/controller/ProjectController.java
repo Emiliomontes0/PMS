@@ -2,10 +2,7 @@ package projectmanagementsystem.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import projectmanagementsystem.entity.Project;
 import projectmanagementsystem.entity.Requirement;
 import projectmanagementsystem.entity.Task;
@@ -25,8 +22,19 @@ import projectmanagementsystem.service.RequirementService;
 
 import javax.swing.*;
 
+
 @Controller
 public class ProjectController {
+    private Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     private ProjectService projectService;
 
     public ProjectController(ProjectService projectService) {
@@ -57,6 +65,7 @@ public class ProjectController {
     @GetMapping("/projects/edit/{id}")
     public String editProjectForm(@PathVariable Long id, Model model) {
         model.addAttribute("project", projectService.getProjectById(id));
+        this.id = id;
         return "edit_project";
     }
 
@@ -69,7 +78,7 @@ public class ProjectController {
         existingProject.setPmName(project.getPmName());
         existingProject.setProjectName(project.getProjectName());
         existingProject.setDescription(project.getDescription());
-
+        id = null;
         projectService.updateProject(existingProject);
         return "redirect:/projects";
     }
@@ -92,8 +101,8 @@ public class ProjectController {
         }
 
         @GetMapping("/projects/edit/requirements")//path
-        public String listRequirements(Model model) {
-            model.addAttribute("requirements", requirementService.getAllRequirements());
+        public String listRequirements(Model model) {// make it, so it only display the associated requirements to project
+            model.addAttribute("requirements", requirementService.getAllRequirementsById(id));
             return "Requirements";
         }
 
@@ -104,13 +113,14 @@ public class ProjectController {
             return "create_requirement";//path
         }
 
-        @PostMapping("/projects/edit/requirements")
+        @PostMapping("/projects/edit/requirements")//add the project id to this  in the create_requirements
         public String saveRequirement(@ModelAttribute("requirement") Requirement requirement) {
             requirementService.saveRequirements(requirement);
+            Project project = projectService.getProjectById(id);
+            project.assignRequirement(requirement);
+            projectService.updateProject(project);
             return "redirect:/projects/edit/requirements";//return page
-
         }
-
 
         @GetMapping("/projects/edit/requirements/edit/{id}")
         public String editRequirementForm(@PathVariable Long id, Model model) {
@@ -152,7 +162,7 @@ public class ProjectController {
 
         @GetMapping("/projects/edit/tasks")//path
         public String listTasks(Model model) {
-            model.addAttribute("tasks", taskService.getAllTasks());
+            model.addAttribute("tasks", taskService.getAllTasksById(id));
             return "Tasks";
         }
 
@@ -167,6 +177,9 @@ public class ProjectController {
         @PostMapping("/projects/edit/tasks")
         public String saveTask(@ModelAttribute("task") Task task) {
             taskService.saveTasks(task);
+            Project project = projectService.getProjectById(id);
+            project.assignTask(task);
+            projectService.updateProject(project);
             return "redirect:/projects/edit/tasks";//return page
 
         }
@@ -214,7 +227,7 @@ public class ProjectController {
 
         @GetMapping("/projects/edit/action_items")//path
         public String listAction_items(Model model) {
-            model.addAttribute("action_items", action_itemService.getAllAction_items());
+            model.addAttribute("action_items", action_itemService.getAllAction_itemsById(id));
             return "Action_items";
 
         }
@@ -230,6 +243,9 @@ public class ProjectController {
         @PostMapping("/projects/edit/action_items")
         public String saveAction_item(@ModelAttribute("action_item") Action_item action_item) {
             action_itemService.saveAction_items(action_item);
+            Project project = projectService.getProjectById(id);
+            project.assignAction_item(action_item);
+            projectService.updateProject(project);
             return "redirect:/projects/edit/action_items";//return page
 
         }
@@ -278,7 +294,7 @@ public class ProjectController {
 
         @GetMapping("/projects/edit/issues")//path
         public String listIssues(Model model) {
-            model.addAttribute("issues", issueService.getAllIssues());
+            model.addAttribute("issues", issueService.getAllIssuesById(id));
             return "Issues";
         }
 
@@ -293,6 +309,9 @@ public class ProjectController {
         @PostMapping("/projects/edit/issues")
         public String saveIssue(@ModelAttribute("issue") Issue issue) {
             issueService.saveIssues(issue);
+            Project project = projectService.getProjectById(id);
+            project.assignIssue(issue);
+            projectService.updateProject(project);
             return "redirect:/projects/edit/issues";//return page
 
         }
@@ -338,7 +357,7 @@ public class ProjectController {
 
         @GetMapping("/projects/edit/decisions")//path
         public String listRequirements(Model model) {
-            model.addAttribute("decisions", decisionService.getAllDecisions());
+            model.addAttribute("decisions", decisionService.getAllDecisionsById(id));
             return "Decisions";
         }
 
@@ -353,6 +372,9 @@ public class ProjectController {
         @PostMapping("/projects/edit/decisions")
         public String saveDecision(@ModelAttribute("decision") Decision decision) {
             decisionService.saveDecisions(decision);
+            Project project = projectService.getProjectById(id);
+            project.assignDecision(decision);
+            projectService.updateProject(project);
             return "redirect:/projects/edit/decisions";//return page
 
         }
@@ -400,7 +422,7 @@ public class ProjectController {
 
         @GetMapping("/projects/edit/resources")//path
         public String listRequirements(Model model) {
-            model.addAttribute("resources", resourceService.getAllResources());
+            model.addAttribute("resources", resourceService.getAllResourcesById(id));
             return "Resources";
         }
 
@@ -416,6 +438,9 @@ public class ProjectController {
         @PostMapping("/projects/edit/resources")
         public String saveResource(@ModelAttribute("resource") Resource resource) {
             resourceService.saveResources(resource);
+            Project project = projectService.getProjectById(id);
+            project.assignResource(resource);
+            projectService.updateProject(project);
             return "redirect:/projects/edit/resources";//return page
 
         }
@@ -462,7 +487,7 @@ public class ProjectController {
 
         @GetMapping("/projects/edit/risks")//path
         public String listRisks(Model model) {
-            model.addAttribute("risks", riskService.getAllRisks());
+            model.addAttribute("risks", riskService.getAllRisksById(id));
             return "Risks";
         }
 
@@ -477,6 +502,9 @@ public class ProjectController {
         @PostMapping("/projects/edit/risks")
         public String saveRisk(@ModelAttribute("risk") Risk risk) {
             riskService.saveRisks(risk);
+            Project project = projectService.getProjectById(id);
+            project.assignRisk(risk);
+            projectService.updateProject(project);
             return "redirect:/projects/edit/risks";//return page
 
         }
