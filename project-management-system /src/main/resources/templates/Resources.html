@@ -76,7 +76,9 @@
                 <thead>
                 <tr>
                     <th> Resource Name</th>
-                    <th> Resource Description</th>
+                    <th> Resource Skills</th>
+                    <th> Resource Title</th>
+                    <th> Resource Pay Rate</th>
                     <th> Actions</th>
                 </tr>
                 </thead>
@@ -88,6 +90,8 @@
                 <tr th:each = "resource: ${resources}">
                     <td th:text ="${resource.resource_name}"></td>
                     <td th:text ="${resource.description}"></td>
+                    <td th:text ="${resource.title}"></td>
+                    <td th:text ="${resource.pay_rate}"></td>
 
                     <td>
 

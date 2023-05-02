@@ -12,6 +12,10 @@ public class Requirement {
     private String req_name;
     @Column(name = "description")
     private String description;
+    @Column(name = "source_doc")
+    private String source_doc;
+    @Column(name = "location_sourceDoc")
+    private String location_sourceDoc;
 
     @ManyToOne(cascade = CascadeType.ALL)//this is correct
     @JoinColumn(name = "project_id", referencedColumnName = "id")//this is correct
@@ -49,6 +53,23 @@ public class Requirement {
     public void setReq_name(String req_name) {
         this.req_name = req_name;
     }
+
+    public String getSource_doc() {
+        return source_doc;
+    }
+
+    public void setSource_doc(String source_doc) {
+        this.source_doc = source_doc;
+    }
+
+    public String getLocation_sourceDoc() {
+        return location_sourceDoc;
+    }
+
+    public void setLocation_sourceDoc(String location_sourceDoc) {
+        this.location_sourceDoc = location_sourceDoc;
+    }
+
     public Project getProject() {
         return project;
     }

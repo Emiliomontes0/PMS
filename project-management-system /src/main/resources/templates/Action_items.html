@@ -77,6 +77,12 @@
                 <tr>
                     <th> Action item Name</th>
                     <th> Action item Description</th>
+                    <th> Date Created</th>
+                    <th> Date Assign</th>
+                    <th> Resource Assign</th>
+                    <th> Expected Completion Date</th>
+                    <th> Actual Completion Date</th>
+                    <th> Status</th>
                     <th> Actions</th>
                 </tr>
                 </thead>
@@ -88,9 +94,14 @@
                 <tr th:each = "action_item: ${action_items}">
                     <td th:text ="${action_item.action_item_name}"></td>
                     <td th:text ="${action_item.description}"></td>
+                    <td th:text ="${action_item.date_create}"></td>
+                    <td th:text ="${action_item.date_assign}"></td>
+                    <td th:text ="${action_item.resource_assign}"></td>
+                    <td th:text ="${action_item.expected_completionDate}"></td>
+                    <td th:text ="${action_item.actual_completionDate}"></td>
+                    <td th:text ="${action_item.status}"></td>
 
                     <td>
-
                         <a th:href = "@{/projects/edit/action_items/edit/{id}(id=${action_item.id})}" class = "btn2 btn-primary">Update</a>
                         <a th:href = "@{/projects/edit/action_items/{id}(id=${action_item.id})}" class = "btn3 btn-danger">Delete</a>
                     </td>

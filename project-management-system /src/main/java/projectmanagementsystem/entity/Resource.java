@@ -12,6 +12,10 @@ public class Resource {
     private String resource_name;
     @Column(name = "description")
     private String description;
+    @Column(name = "title")
+    private String title;
+    @Column(name = "pay_rate")
+    private Double pay_rate;
     @ManyToOne(cascade = CascadeType.ALL)//this is correct
     @JoinColumn(name = "project_id", referencedColumnName = "id")//this is correct
     private Project project;
@@ -49,6 +53,23 @@ public class Resource {
     public void setId(long id) {
         this.id = id;
     }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Double getPay_rate() {
+        return pay_rate;
+    }
+
+    public void setPay_rate(Double pay_rate) {
+        this.pay_rate = pay_rate;
+    }
+
     public Project getProject() {
         return project;
     }

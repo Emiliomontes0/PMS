@@ -77,6 +77,15 @@
                 <tr>
                     <th> Decision Name</th>
                     <th> Decision Description</th>
+                    <th> Date Created</th>
+                    <th> Date Needed</th>
+                    <th> Date Made</th>
+                    <th> Decision Maker</th>
+                    <th> Expected Completion Date</th>
+                    <th> Actual Completion Date</th>
+                    <th> Priority</th>
+                    <th> Impact</th>
+                    <th> Status</th>
                     <th> Actions</th>
                 </tr>
                 </thead>
@@ -88,6 +97,15 @@
                 <tr th:each = "decision: ${decisions}">
                     <td th:text ="${decision.decision_name}"></td>
                     <td th:text ="${decision.description}"></td>
+                    <td th:text ="${decision.date_create}"></td>
+                    <td th:text ="${decision.date_need}"></td>
+                    <td th:text ="${decision.date_made}"></td>
+                    <td th:text ="${decision.decision_maker}"></td>
+                    <td th:text ="${decision.expected_completionDate}"></td>
+                    <td th:text ="${decision.actual_completionDate}"></td>
+                    <td th:text = "${decision.priority}"></td>
+                    <td th:text = "${decision.impact}"></td>
+                    <td th:text = "${decision.status}"></td>
 
                     <td>
 

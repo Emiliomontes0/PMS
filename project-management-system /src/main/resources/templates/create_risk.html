@@ -55,6 +55,58 @@
                            class = "form-control"
                            placeholder="Enter Risk Description"/>
                 </div>
+                <div class = "form-group">
+                    <label>Probability</label>
+                    <input type="text"
+                           name="probability"
+                           th:field = "*{probability}"
+                           class = "form-control"
+                           placeholder="Enter Probability"/>
+                </div>
+                <div class = "form-group">
+                    <label>Mitigation Plans</label>
+                    <input type="text"
+                           name="mitigation"
+                           th:field = "*{mitigation}"
+                           class = "form-control"
+                           placeholder="Enter Mitigation Plans"/>
+                </div>
+                <div class = "form-group">
+                    <label>Contingency Plan</label>
+                    <input type="text"
+                           name="contingency"
+                           th:field = "*{contingency}"
+                           class = "form-control"
+                           placeholder="Enter Contingency Plan"/>
+                </div>
+                <div class = "form-group">
+                    <label> Risk Score</label>
+                    <input type="text"
+                           name="risk_score"
+                           th:field = "*{risk_score}"
+                           class = "form-control"
+                           placeholder="Enter Risk Score"/>
+                </div>
+                <div class = "form-group">
+                    <label>Mitigation Action By </label>
+                    <input type="text"
+                           name="action_by"
+                           th:field = "*{action_by}"
+                           class = "form-control"
+                           placeholder="Enter Mitigation Action By"/>
+                </div>
+                <p> Category</p>
+                <select th:field="*{category}">
+                    <option value="Schedule">Schedule</option>
+                    <option value="Budget">Budget</option>
+                    <option value="Scope">Scope</option>
+                </select>
+                <p> Impact </p>
+                <select th:field="*{impact}">
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </select>
 
                 <div class = "box-footer">
                     <button type = "submit" class = "button">

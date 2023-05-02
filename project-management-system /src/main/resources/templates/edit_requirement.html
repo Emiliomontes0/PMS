@@ -53,6 +53,22 @@
                            class = "form-control"
                            placeholder="Enter Requirement description"/>
                 </div>
+                <div class = "form-group">
+                    <label>Source Document Name</label>
+                    <input type="text"
+                           name="source_doc"
+                           th:field = "*{source_doc}"
+                           class = "form-control"
+                           placeholder="Enter Source Document"/>
+                </div>
+                <div class = "form-group">
+                    <label>Location Source Document</label>
+                    <input type="text"
+                           name="location_sourceDoc"
+                           th:field = "*{location_sourceDoc}"
+                           class = "form-control"
+                           placeholder="Enter Location of source Doc"/>
+                </div>
 
                 <div class = "box-footer">
                     <button type = "submit" class = "btn btn-primary">

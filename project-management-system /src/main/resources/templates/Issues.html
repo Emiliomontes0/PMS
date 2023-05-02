@@ -77,6 +77,13 @@
                 <tr>
                     <th> Issue Name</th>
                     <th> Issue Description</th>
+                    <th> Date Raise</th>
+                    <th> Date Assign</th>
+                    <th> Expected Completion Date</th>
+                    <th> Actual Completion Date</th>
+                    <th> Priority</th>
+                    <th> Severity</th>
+                    <th> Status</th>
                     <th> Actions</th>
                 </tr>
                 </thead>
@@ -88,6 +95,13 @@
                 <tr th:each = "issue: ${issues}">
                     <td th:text ="${issue.issue_name}"></td>
                     <td th:text ="${issue.description}"></td>
+                    <td th:text ="${issue.date_create}"></td>
+                    <td th:text ="${issue.date_assign}"></td>
+                    <td th:text ="${issue.expected_completionDate}"></td>
+                    <td th:text ="${issue.actual_completionDate}"></td>
+                    <td th:text ="${issue.priority}"></td>
+                    <td th:text ="${issue.impact}"></td>
+                    <td th:text ="${issue.status}"></td>
 
                     <td>
 

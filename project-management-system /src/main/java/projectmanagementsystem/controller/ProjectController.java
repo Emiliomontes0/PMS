@@ -78,6 +78,7 @@ public class ProjectController {
         existingProject.setPmName(project.getPmName());
         existingProject.setProjectName(project.getProjectName());
         existingProject.setDescription(project.getDescription());
+        existingProject.setStatus(project.getStatus());
         id = null;
         projectService.updateProject(existingProject);
         return "redirect:/projects";
@@ -137,6 +138,8 @@ public class ProjectController {
             existingRequirement.setId(id);
             existingRequirement.setReq_name(requirement.getReq_name());
             existingRequirement.setDescription(requirement.getDescription());
+            existingRequirement.setSource_doc(requirement.getSource_doc());
+            existingRequirement.setLocation_sourceDoc(requirement.getLocation_sourceDoc());
 
             requirementService.updateRequirement(existingRequirement);
             return "redirect:/projects/edit/requirements";
@@ -201,6 +204,17 @@ public class ProjectController {
             existingTask.setId(id);
             existingTask.setTask_name(task.getTask_name());
             existingTask.setDescription(task.getDescription());
+            existingTask.setDate_created(task.getDate_created());
+            existingTask.setActual_dateCreated(task.getActual_dateCreated());
+            existingTask.setDate_end(task.getDate_end());
+            existingTask.setActual_dateEnded(task.getActual_dateEnded());
+            existingTask.setExpected_duration(task.getExpected_duration());
+            existingTask.setActual_duration(task.getActual_duration());
+            existingTask.setExpected_effort(task.getExpected_effort());
+            existingTask.setActual_effort(task.getActual_effort());
+            existingTask.setResource_assign(task.getResource_assign());
+            existingTask.setStatus(task.getStatus());
+
 
             taskService.updateTask(existingTask);
             return "redirect:/projects/edit/tasks";
@@ -210,7 +224,7 @@ public class ProjectController {
         @GetMapping("/projects/edit/tasks/{id}")//getting pathing of new requirements
         public String deleteTask(@PathVariable Long id){
             taskService.deleteTaskById(id);
-            return "redirect:/projects/edit/requirements";
+            return "redirect:/projects/edit/tasks";
 
         }
     }
@@ -269,6 +283,12 @@ public class ProjectController {
             existingAction_item.setId(id);
             existingAction_item.setAction_item_name(action_item.getAction_item_name());
             existingAction_item.setDescription(action_item.getDescription());
+            existingAction_item.setDate_create(action_item.getDate_create());
+            existingAction_item.setDate_assign(action_item.getDate_assign());
+            existingAction_item.setResource_assign(action_item.getResource_assign());
+            existingAction_item.setExpected_completionDate(action_item.getExpected_completionDate());
+            existingAction_item.setActual_completionDate(action_item.getActual_completionDate());
+            existingAction_item.setStatus(action_item.getStatus());
 
             action_itemService.updateAction_item(existingAction_item);
             return "redirect:/projects/edit/action_items";
@@ -332,6 +352,13 @@ public class ProjectController {
             existingIssue.setId(id);
             existingIssue.setIssue_name(issue.getIssue_name());
             existingIssue.setDescription(issue.getDescription());
+            existingIssue.setDate_create(issue.getDate_create());
+            existingIssue.setDate_assign(issue.getDate_assign());
+            existingIssue.setExpected_completionDate(issue.getExpected_completionDate());
+            existingIssue.setActual_completionDate(issue.getActual_completionDate());
+            existingIssue.setPriority(issue.getPriority());
+            existingIssue.setImpact(issue.getImpact());
+            existingIssue.setStatus(issue.getStatus());
 
             issueService.updateIssue(existingIssue);
             return "redirect:/projects/edit/issues";
@@ -396,6 +423,15 @@ public class ProjectController {
             existingDecision.setId(id);
             existingDecision.setDecision_name(decision.getDecision_name());
             existingDecision.setDescription(decision.getDescription());
+            existingDecision.setDate_create(decision.getDate_create());
+            existingDecision.setDate_made(decision.getDate_made());
+            existingDecision.setDate_need(decision.getDate_need());
+            existingDecision.setDecision_maker(decision.getDecision_maker());
+            existingDecision.setExpected_completionDate(decision.getExpected_completionDate());
+            existingDecision.setActual_completionDate(decision.getActual_completionDate());
+            existingDecision.setPriority(decision.getPriority());
+            existingDecision.setImpact(decision.getImpact());
+            existingDecision.setStatus(decision.getStatus());
 
             decisionService.updateDecision(existingDecision);
             return "redirect:/projects/edit/decisions";
@@ -462,6 +498,8 @@ public class ProjectController {
             existingResource.setId(id);
             existingResource.setResource_name(resource.getResource_name());
             existingResource.setDescription(resource.getDescription());
+            existingResource.setTitle(resource.getTitle());
+            existingResource.setPay_rate(resource.getPay_rate());
 
             resourceService.updateResource(existingResource);
             return "redirect:/projects/edit/resources";
@@ -524,6 +562,13 @@ public class ProjectController {
             existingRisk.setId(id);
             existingRisk.setRisk_name(risk.getRisk_name());
             existingRisk.setDescription(risk.getDescription());
+            existingRisk.setCategory(risk.getCategory());
+            existingRisk.setProbability(risk.getProbability());
+            existingRisk.setImpact(risk.getImpact());
+            existingRisk.setMitigation(risk.getMitigation());
+            existingRisk.setContingency(risk.getContingency());
+            existingRisk.setRisk_score(risk.getRisk_score());
+            existingRisk.setAction_by(risk.getAction_by());
 
             riskService.updateRisk(existingRisk);
             return "redirect:/projects/edit/risks";

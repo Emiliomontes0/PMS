@@ -77,6 +77,16 @@
                 <tr>
                     <th> Task Name</th>
                     <th> Task Description</th>
+                    <th> Date created</th>
+                    <th> Actual date created</th>
+                    <th> Date end </th>
+                    <th> Actual Dates end</th>
+                    <th> Expected Duration</th>
+                    <th> Actual Duration</th>
+                    <th> Expected Effort</th>
+                    <th> Actual Effort</th>
+                    <th> Resource Assign</th>
+                    <th> Status</th>
                     <th> Actions</th>
                 </tr>
                 </thead>
@@ -88,6 +98,17 @@
                 <tr th:each = "task: ${tasks}">
                     <td th:text ="${task.task_name}"></td>
                     <td th:text ="${task.description}"></td>
+                    <td th:text ="${task.date_created}"></td>
+                    <td th:text ="${task.actual_dateCreated}"></td>
+                    <td th:text ="${task.date_end}"></td>
+                    <td th:text ="${task.actual_dateEnded}"></td>
+                    <td th:text ="${task.expected_duration}"></td>
+                    <td th:text ="${task.actual_duration}"></td>
+                    <td th:text ="${task.expected_effort}"></td>
+                    <td th:text ="${task.actual_effort}"></td>
+                    <td th:text ="${task.resource_assign}"></td>
+                    <td th:text ="${task.status}"></td>
+
 
                     <td>
 

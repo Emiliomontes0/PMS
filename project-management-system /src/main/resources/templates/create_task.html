@@ -55,6 +55,83 @@
                            class = "form-control"
                            placeholder="Enter Task Description"/>
                 </div>
+                <div class = "form-group">
+                    <label>DatesCreated</label>
+                    <input type="text"
+                           name="dateCreated"
+                           th:field = "*{date_created}"
+                           class = "form-control"
+                           placeholder="Enter Task date created"/>
+                </div>
+                <div class = "form-group">
+                    <label>Actual date Created</label>
+                    <input type="text"
+                           name="actual date created"
+                           th:field = "*{actual_dateCreated}"
+                           class = "form-control"
+                           placeholder="Enter Task actual date created"/>
+                </div>
+                <div class = "form-group">
+                    <label>Date ended</label>
+                    <input type="text"
+                           name="date_ended"
+                           th:field = "*{date_end}"
+                           class = "form-control"
+                           placeholder="Enter Task date ended"/>
+                </div>
+                <div class = "form-group">
+                    <label>Actual date ended</label>
+                    <input type="text"
+                           name="actual date ended"
+                           th:field = "*{actual_dateEnded}"
+                           class = "form-control"
+                           placeholder="Enter Task actual date end"/>
+                </div>
+                <div class = "form-group">
+                    <label>Expected Duration</label>
+                    <input type="text"
+                           name="expected duration"
+                           th:field = "*{expected_duration}"
+                           class = "form-control"
+                           placeholder="Enter Task expected duration"/>
+                </div>
+                <div class = "form-group">
+                    <label>Actual duration</label>
+                    <input type="text"
+                           name="actual duration"
+                           th:field = "*{actual_duration}"
+                           class = "form-control"
+                           placeholder="Enter Task actual duration"/>
+                </div>
+                <div class = "form-group">
+                    <label>expected effort</label>
+                    <input type="text"
+                           name="expected effort"
+                           th:field = "*{expected_effort}"
+                           class = "form-control"
+                           placeholder="Enter Task expected effort"/>
+                </div>
+                <div class = "form-group">
+                    <label>Actual effort</label>
+                    <input type="text"
+                           name="actual effort"
+                           th:field = "*{actual_effort}"
+                           class = "form-control"
+                           placeholder="Enter Task actual effort"/>
+                </div>
+                <div class = "form-group">
+                    <label>Resource assign</label>
+                    <input type="text"
+                           name="resource assign"
+                           th:field = "*{resource_assign}"
+                           class = "form-control"
+                           placeholder="Enter Task resource assign"/>
+                </div>
+                <select th:field="*{status}">
+                    <option value="Not Started">Not Started</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Completed">Completed</option>
+                </select>
 
                 <div class = "box-footer">
                     <button type = "submit" class = "button">

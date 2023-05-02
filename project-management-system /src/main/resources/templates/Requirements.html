@@ -68,9 +68,11 @@
         <table class = "table table-striped table-bordered table-dark">
             <thead>
             <tr>
-              <th> Requirement Name</th>
-             <th> Project Description</th>
-             <th> Actions</th>
+                <th> Requirement Name</th>
+                <th> Project Description</th>
+                <th> Source Document Name</th>
+                <th> Location Of Source Document</th>
+                <th> Actions</th>
             </tr>
              </thead>
 
@@ -81,6 +83,8 @@
             <tr th:each = "requirement: ${requirements}">
                 <td th:text ="${requirement.req_name}"></td>
                 <td th:text ="${requirement.description}"></td>
+                <td th:text ="${requirement.source_doc}"></td>
+                <td th:text ="${requirement.location_sourceDoc}"></td>
 
             <td>
 

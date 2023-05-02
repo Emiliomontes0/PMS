@@ -55,6 +55,60 @@
                            class = "form-control"
                            placeholder="Enter Issue Description"/>
                 </div>
+                <div class = "form-group">
+                    <label>Date Raised</label>
+                    <input type="text"
+                           name="date_create"
+                           th:field = "*{date_create}"
+                           class = "form-control"
+                           placeholder="Enter Date Raise"/>
+                </div>
+                <div class = "form-group">
+                    <label>Date Assign</label>
+                    <input type="text"
+                           name="date_assign"
+                           th:field = "*{date_assign}"
+                           class = "form-control"
+                           placeholder="Enter Date Assign"/>
+                </div>
+                <div class = "form-group">
+                    <label>Expected Completion Date</label>
+                    <input type="text"
+                           name="expected_completionDate"
+                           th:field = "*{expected_completionDate}"
+                           class = "form-control"
+                           placeholder="Enter Expected Completion Date"/>
+                </div>
+                <div class = "form-group">
+                    <label>Actual Completion Date</label>
+                    <input type="text"
+                           name="actual_comletionDate"
+                           th:field = "*{actual_completionDate}"
+                           class = "form-control"
+                           placeholder="Enter Actual completion date"/>
+                </div>
+                <p> Priority</p>
+                <select th:field="*{priority}">
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                </select>
+                <p> Severity </p>
+                <select th:field="*{impact}">
+                    <option value="Minor">Minor</option>
+                    <option value="Low">Low</option>
+                    <option value="Medium">Medium</option>
+                    <option value="High">High</option>
+                    <option value="Critical">Critical</option>
+                </select>
+                <p> Status</p>
+                <select th:field="*{status}">
+                    <option value="Open">Not Started</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Close">Completed</option>
+                    <option value="Hold">Hold</option>
+                    <option value="Complete">Complete</option>
+                </select>
 
                 <div class = "box-footer">
                     <button type = "submit" class = "button">

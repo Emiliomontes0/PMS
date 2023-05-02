@@ -17,7 +17,8 @@ public class Project {
     private String projectName;
     @Column(name = "description")
     private String description;
-
+    @Column(name = "status")
+    private String status;
 
 
     @OneToMany(targetEntity = Requirement.class, cascade = CascadeType.ALL)//this is correct
@@ -82,6 +83,15 @@ public class Project {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public List<Requirement> getRequirement() {
         return assignRequirement;
     }

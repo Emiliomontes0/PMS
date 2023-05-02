@@ -77,6 +77,13 @@
                 <tr>
                     <th> Risk Name</th>
                     <th> Risk Description</th>
+                    <th> Category</th>
+                    <th> Probability</th>
+                    <th> Impact</th>
+                    <th> Mitigation</th>
+                    <th> Contingency</th>
+                    <th> Risk Score</th>
+                    <th> Mitigation Action By</th>
                     <th> Actions</th>
                 </tr>
                 </thead>
@@ -88,6 +95,13 @@
                 <tr th:each = "risk: ${risks}">
                     <td th:text ="${risk.risk_name}"></td>
                     <td th:text ="${risk.description}"></td>
+                    <td th:text ="${risk.category}"></td>
+                    <td th:text ="${risk.probability}">%</td>
+                    <td th:text ="${risk.impact}"></td>
+                    <td th:text ="${risk.mitigation}"></td>
+                    <td th:text ="${risk.contingency}"></td>
+                    <td th:text ="${risk.risk_score}"></td>
+                    <td th:text ="${risk.action_by}"></td>
 
                     <td>
 
