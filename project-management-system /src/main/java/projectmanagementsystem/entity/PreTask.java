@@ -1,12 +1,9 @@
 package projectmanagementsystem.entity;
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Entity
-@Table(name = "Task")
-public class Task {
+@Table(name = "PreTask")
+public class PreTask {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -34,23 +31,17 @@ public class Task {
     private Long actual_effort;
     @Column(name = "status")
     private String status;
-    @OneToMany(targetEntity = Task.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "preT_key", referencedColumnName = "id")
-    private List<PreTask> preTask = new ArrayList<>();
-    @OneToMany(targetEntity = Task.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "sucT_key", referencedColumnName = "id")
-    private List<SucTask> sucTask = new ArrayList<>();
 
     //pred task and succesor from update task button and move to its own page
     @ManyToOne(cascade = CascadeType.ALL)//this is correct
-    @JoinColumn(name = "project_id", referencedColumnName = "id")//this is correct
-    private Project project;
-    public Task(){
+    @JoinColumn(name = "task_id", referencedColumnName = "id")//this is correct
+    private Task task;
+    public PreTask(){
 
     }
-    public Task( String task_name, String description,String date_end, String date_created, String
+    public PreTask(String task_name, String description, String date_end, String date_created, String
             actual_dateCreated, String actual_dateEnded, String resource_assign, String expected_duration,
-                 String actual_duration, Long expected_effort, Long actual_effort, String status) {
+                   String actual_duration, Long expected_effort, Long actual_effort, String status) {
         super();
         this.task_name = task_name;
         this.description=description;
@@ -170,23 +161,11 @@ public class Task {
         this.status = status;
     }
 
-    public Project getProject() {
-        return project;
+    public Task getTask() {
+        return task;
     }
 
-    public void setProject(Project project) {
-        this.project = project;
+    public void setTask(Task task) {
+        this.task = task;
     }
-
-    public List<PreTask> getPreTask() {
-        return preTask;
-    }
-    public void assignPreTask(PreTask pretask){
-        preTask.add(pretask);
-    }
-
-    public List<SucTask> getSucTask() {
-        return sucTask;
-    }
-    public void assignSucTask(SucTask suctask){sucTask.add(suctask);}
 }

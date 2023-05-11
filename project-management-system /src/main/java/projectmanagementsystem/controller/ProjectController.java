@@ -11,6 +11,8 @@ import projectmanagementsystem.entity.Issue;
 import projectmanagementsystem.entity.Resource;
 import projectmanagementsystem.entity.Decision;
 import projectmanagementsystem.entity.Risk;
+import projectmanagementsystem.entity.PreTask;
+import projectmanagementsystem.entity.SucTask;
 import projectmanagementsystem.service.RiskService;
 import projectmanagementsystem.service.TaskService;
 import projectmanagementsystem.service.Action_itemService;
@@ -19,20 +21,31 @@ import projectmanagementsystem.service.ResourceService;
 import projectmanagementsystem.service.DecisionService;
 import projectmanagementsystem.service.ProjectService;
 import projectmanagementsystem.service.RequirementService;
+import projectmanagementsystem.service.PreTaskService;
+import projectmanagementsystem.service.SucTaskService;
 
 import javax.swing.*;
 
 
 @Controller
 public class ProjectController {
-    private Long id;
+    private Long pid;
+    private Long tid;
 
     public Long getId() {
-        return id;
+        return pid;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long pid) {
+        this.pid = pid;
+    }
+
+    public Long getTid() {
+        return tid;
+    }
+
+    public void setTid(Long tid) {
+        this.tid = tid;
     }
 
     private ProjectService projectService;
@@ -65,7 +78,7 @@ public class ProjectController {
     @GetMapping("/projects/edit/{id}")
     public String editProjectForm(@PathVariable Long id, Model model) {
         model.addAttribute("project", projectService.getProjectById(id));
-        this.id = id;
+        this.pid = id;
         return "edit_project";
     }
 
@@ -79,7 +92,7 @@ public class ProjectController {
         existingProject.setProjectName(project.getProjectName());
         existingProject.setDescription(project.getDescription());
         existingProject.setStatus(project.getStatus());
-        id = null;
+        pid = null;
         projectService.updateProject(existingProject);
         return "redirect:/projects";
     }
@@ -103,7 +116,7 @@ public class ProjectController {
 
         @GetMapping("/projects/edit/requirements")//path
         public String listRequirements(Model model) {// make it, so it only display the associated requirements to project
-            model.addAttribute("requirements", requirementService.getAllRequirementsById(id));
+            model.addAttribute("requirements", requirementService.getAllRequirementsById(pid));
             return "Requirements";
         }
 
@@ -117,7 +130,7 @@ public class ProjectController {
         @PostMapping("/projects/edit/requirements")//add the project id to this  in the create_requirements
         public String saveRequirement(@ModelAttribute("requirement") Requirement requirement) {
             requirementService.saveRequirements(requirement);
-            Project project = projectService.getProjectById(id);
+            Project project = projectService.getProjectById(pid);
             project.assignRequirement(requirement);
             projectService.updateProject(project);
             return "redirect:/projects/edit/requirements";//return page
@@ -165,7 +178,7 @@ public class ProjectController {
 
         @GetMapping("/projects/edit/tasks")//path
         public String listTasks(Model model) {
-            model.addAttribute("tasks", taskService.getAllTasksById(id));
+            model.addAttribute("tasks", taskService.getAllTasksById(pid));
             return "Tasks";
         }
 
@@ -180,7 +193,7 @@ public class ProjectController {
         @PostMapping("/projects/edit/tasks")
         public String saveTask(@ModelAttribute("task") Task task) {
             taskService.saveTasks(task);
-            Project project = projectService.getProjectById(id);
+            Project project = projectService.getProjectById(pid);
             project.assignTask(task);
             projectService.updateProject(project);
             return "redirect:/projects/edit/tasks";//return page
@@ -191,6 +204,7 @@ public class ProjectController {
         @GetMapping("/projects/edit/tasks/edit/{id}")
         public String editTaskForm(@PathVariable Long id, Model model) {
             model.addAttribute("task", taskService.getTaskById(id));
+            tid = id;
             return "edit_task";
         }
 
@@ -215,8 +229,8 @@ public class ProjectController {
             existingTask.setResource_assign(task.getResource_assign());
             existingTask.setStatus(task.getStatus());
 
-
             taskService.updateTask(existingTask);
+            tid = null;
             return "redirect:/projects/edit/tasks";
         }
 
@@ -228,6 +242,159 @@ public class ProjectController {
 
         }
     }
+    @Controller
+    public class PreTaskController {
+        private PreTaskService pretaskService;
+        private TaskService taskService;
+        public PreTaskController(PreTaskService pretaskService, TaskService taskservice) {
+            super();
+            this.pretaskService = pretaskService;
+            this.taskService = taskservice;
+        }
+
+        @GetMapping("/projects/edit/tasks/preTask")//path
+        public String listTasks(Model model) {
+            model.addAttribute("task", taskService.getAllTasks());
+            return "PreTasks";
+        }
+
+
+        @GetMapping("/projects/edit/tasks/preTask/new")//path context
+        public String createTaskForm(Model model) {
+            PreTask preTask = new PreTask();
+            model.addAttribute("preTask", preTask);
+            return "create_pretask";//path
+        }
+
+        @PostMapping("/projects/edit/tasks/preTask")
+        public String saveTask(@ModelAttribute("task") PreTask pretask) {
+            pretaskService.saveTasks(pretask);
+            System.out.println(tid);
+            Task task = taskService.getTaskById(tid);//this is null current issue
+            task.assignPreTask(pretask);
+            taskService.updateTask(task);
+            return "redirect:/projects/edit/tasks/preTask";//return page
+
+        }
+
+
+        @GetMapping("/projects/edit/tasks/preTask/{id}")
+        public String editTaskForm(@PathVariable Long id, Model model) {
+            model.addAttribute("pretask", pretaskService.getTaskById(id));
+            return "edit_pretask";
+        }
+
+
+
+        @PostMapping("/projects/edit/tasks/preTask/{id}")
+        public String updateTask(@PathVariable Long id,
+                                 @ModelAttribute("pretask") PreTask preTask, Model model) {
+
+            PreTask existingTask = pretaskService.getTaskById(id);
+            existingTask.setId(id);
+            existingTask.setTask_name(preTask.getTask_name());
+            existingTask.setDescription(preTask.getDescription());
+            existingTask.setDate_created(preTask.getDate_created());
+            existingTask.setActual_dateCreated(preTask.getActual_dateCreated());
+            existingTask.setDate_end(preTask.getDate_end());
+            existingTask.setActual_dateEnded(preTask.getActual_dateEnded());
+            existingTask.setExpected_duration(preTask.getExpected_duration());
+            existingTask.setActual_duration(preTask.getActual_duration());
+            existingTask.setExpected_effort(preTask.getExpected_effort());
+            existingTask.setActual_effort(preTask.getActual_effort());
+            existingTask.setResource_assign(preTask.getResource_assign());
+            existingTask.setStatus(preTask.getStatus());
+
+            pretaskService.updateTask(existingTask);
+            return "redirect:/projects/edit/tasks/preTask";
+        }
+
+    /* issue here
+        @GetMapping("/projects/edit/tasks/preTask/{id}")//getting pathing of new requirements
+        public String deleteTask(@PathVariable Long id){
+            pretaskService.deleteTaskById(id);
+            return "redirect:/projects/edit/tasks/preTask";
+
+        }
+        */
+    }
+
+    @Controller
+    public class SucTaskController {
+        private SucTaskService suctaskService;
+        private TaskService taskService;
+        public SucTaskController(SucTaskService suctaskService) {
+            super();
+            this.suctaskService = suctaskService;
+        }
+
+        @GetMapping("/projects/edit/tasks/sucTask")//path
+        public String listTasks(Model model) {
+            model.addAttribute("tasks", suctaskService.getAllTasksById(tid));
+            return "SucTasks";
+        }
+
+
+        @GetMapping("/projects/edit/tasks/sucTask/new")//path context
+        public String createTaskForm(Model model) {
+            SucTask suctask = new SucTask();
+            model.addAttribute("task", suctask);
+            return "create_suctask";//path
+        }
+
+        @PostMapping("/projects/edit/tasks/sucTask")
+        public String saveTask(@ModelAttribute("task") SucTask suctask) {
+            suctaskService.saveTasks(suctask);
+            Task task = taskService.getTaskById(tid);
+            task.assignSucTask(suctask);
+            taskService.updateTask(task);
+            return "redirect:/projects/edit/tasks/sucTask";//return page
+
+        }
+
+
+        @GetMapping("/projects/edit/tasks/sucTask/{id}")
+        public String editTaskForm(@PathVariable Long id, Model model) {
+            model.addAttribute("task", suctaskService.getTaskById(id));
+            return "edit_sucTask";
+        }
+
+
+
+        @PostMapping("/projects/edit/tasks/sucTask/{id}")
+        public String updateTask(@PathVariable Long id,
+                                 @ModelAttribute("task") SucTask sucTask, Model model) {
+
+            SucTask existingTask = suctaskService.getTaskById(id);
+            existingTask.setId(id);
+            existingTask.setTask_name(sucTask.getTask_name());
+            existingTask.setDescription(sucTask.getDescription());
+            existingTask.setDate_created(sucTask.getDate_created());
+            existingTask.setActual_dateCreated(sucTask.getActual_dateCreated());
+            existingTask.setDate_end(sucTask.getDate_end());
+            existingTask.setActual_dateEnded(sucTask.getActual_dateEnded());
+            existingTask.setExpected_duration(sucTask.getExpected_duration());
+            existingTask.setActual_duration(sucTask.getActual_duration());
+            existingTask.setExpected_effort(sucTask.getExpected_effort());
+            existingTask.setActual_effort(sucTask.getActual_effort());
+            existingTask.setResource_assign(sucTask.getResource_assign());
+            existingTask.setStatus(sucTask.getStatus());
+
+
+            suctaskService.updateTask(existingTask);
+            return "redirect:/projects/edit/tasks/sucTask";
+        }
+
+        /*
+        @GetMapping("/projects/edit/tasks/sucTask/{id}")//getting pathing of new requirements
+        public String deleteTask(@PathVariable Long id){
+            suctaskService.deleteTaskById(id);
+            return "redirect:/projects/edit/tasks/sucTask";
+
+        }
+         */
+    }
+
 
 
     @Controller
@@ -241,7 +408,7 @@ public class ProjectController {
 
         @GetMapping("/projects/edit/action_items")//path
         public String listAction_items(Model model) {
-            model.addAttribute("action_items", action_itemService.getAllAction_itemsById(id));
+            model.addAttribute("action_items", action_itemService.getAllAction_itemsById(pid));
             return "Action_items";
 
         }
@@ -257,7 +424,7 @@ public class ProjectController {
         @PostMapping("/projects/edit/action_items")
         public String saveAction_item(@ModelAttribute("action_item") Action_item action_item) {
             action_itemService.saveAction_items(action_item);
-            Project project = projectService.getProjectById(id);
+            Project project = projectService.getProjectById(pid);
             project.assignAction_item(action_item);
             projectService.updateProject(project);
             return "redirect:/projects/edit/action_items";//return page
@@ -314,7 +481,7 @@ public class ProjectController {
 
         @GetMapping("/projects/edit/issues")//path
         public String listIssues(Model model) {
-            model.addAttribute("issues", issueService.getAllIssuesById(id));
+            model.addAttribute("issues", issueService.getAllIssuesById(pid));
             return "Issues";
         }
 
@@ -329,7 +496,7 @@ public class ProjectController {
         @PostMapping("/projects/edit/issues")
         public String saveIssue(@ModelAttribute("issue") Issue issue) {
             issueService.saveIssues(issue);
-            Project project = projectService.getProjectById(id);
+            Project project = projectService.getProjectById(pid);
             project.assignIssue(issue);
             projectService.updateProject(project);
             return "redirect:/projects/edit/issues";//return page
@@ -384,7 +551,7 @@ public class ProjectController {
 
         @GetMapping("/projects/edit/decisions")//path
         public String listRequirements(Model model) {
-            model.addAttribute("decisions", decisionService.getAllDecisionsById(id));
+            model.addAttribute("decisions", decisionService.getAllDecisionsById(pid));
             return "Decisions";
         }
 
@@ -399,7 +566,7 @@ public class ProjectController {
         @PostMapping("/projects/edit/decisions")
         public String saveDecision(@ModelAttribute("decision") Decision decision) {
             decisionService.saveDecisions(decision);
-            Project project = projectService.getProjectById(id);
+            Project project = projectService.getProjectById(pid);
             project.assignDecision(decision);
             projectService.updateProject(project);
             return "redirect:/projects/edit/decisions";//return page
@@ -458,7 +625,7 @@ public class ProjectController {
 
         @GetMapping("/projects/edit/resources")//path
         public String listRequirements(Model model) {
-            model.addAttribute("resources", resourceService.getAllResourcesById(id));
+            model.addAttribute("resources", resourceService.getAllResourcesById(pid));
             return "Resources";
         }
 
@@ -474,7 +641,7 @@ public class ProjectController {
         @PostMapping("/projects/edit/resources")
         public String saveResource(@ModelAttribute("resource") Resource resource) {
             resourceService.saveResources(resource);
-            Project project = projectService.getProjectById(id);
+            Project project = projectService.getProjectById(pid);
             project.assignResource(resource);
             projectService.updateProject(project);
             return "redirect:/projects/edit/resources";//return page
@@ -525,7 +692,7 @@ public class ProjectController {
 
         @GetMapping("/projects/edit/risks")//path
         public String listRisks(Model model) {
-            model.addAttribute("risks", riskService.getAllRisksById(id));
+            model.addAttribute("risks", riskService.getAllRisksById(pid));
             return "Risks";
         }
 
@@ -540,7 +707,7 @@ public class ProjectController {
         @PostMapping("/projects/edit/risks")
         public String saveRisk(@ModelAttribute("risk") Risk risk) {
             riskService.saveRisks(risk);
-            Project project = projectService.getProjectById(id);
+            Project project = projectService.getProjectById(pid);
             project.assignRisk(risk);
             projectService.updateProject(project);
             return "redirect:/projects/edit/risks";//return page

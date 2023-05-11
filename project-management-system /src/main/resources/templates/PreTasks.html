@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeLeaf.org">
+<meta lang ="ISO-8859-1">
+<head>
+    <meta charset="UTF-8">
+    <title>Project Management System</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/requirement_styles.css}">
+
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <form>
+        <input type="button" class = "return" value="Return     " onclick="history.go(-1)">
+    </form>
+    <!-- Brand -->
+    <a class="navbar-brand" href="#">Project Management System</a>
+
+    <!-- Toggler/collapsibe Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/projects}">Project Management</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+    <div class = "container">
+        <div class = "row" >
+            <h1> List Pre Tasks </h1>
+        </div>
+
+        <div class = "row">
+            <div class = col-lg-3>
+                <a th:href = "@{/projects/edit/tasks/preTask/new}" class = "btn btn-primary btn-sm mb-3"> Add Pre Task</a>
+            </div>
+        </div>
+
+        <div class = "bodyTable">
+            <div class="btn-group-vertical" role="group" aria-label="Basic example">
+                <a th:href = "@{/projects/edit/tasks/sucTask}">
+                    <button type="button" class="btn btn-secondary" >Successor Task </button>
+                </a>
+                <a th:href = "@{/projects/edit/tasks}">
+                    <button type="button" class="btn btn-secondary"><pre class = "textbtn">Task        </pre></button>
+                </a>
+                <form>
+                    <input type="button" class = "return" value="Return     " onclick="history.go(-1)">
+                </form>
+            </div>
+            <table class = "table table-striped table-bordered table-dark">
+                <thead>
+                <tr>
+                    <th> Task Name</th>
+                    <th> Task Description</th>
+                    <th> Date created</th>
+                    <th> Actual date created</th>
+                    <th> Date end </th>
+                    <th> Actual Dates end</th>
+                    <th> Expected Duration</th>
+                    <th> Actual Duration</th>
+                    <th> Expected Effort</th>
+                    <th> Actual Effort</th>
+                    <th> Resource Assign</th>
+                    <th> Status</th>
+                    <th> Actions</th>
+                </tr>
+                </thead>
+
+
+                <tbody>
+
+
+                <tr th:each = "task: ${tasks}">
+                    <td th:text ="${task.task_name}"></td>
+                    <td th:text ="${task.description}"></td>
+                    <td th:text ="${task.date_created}"></td>
+                    <td th:text ="${task.actual_dateCreated}"></td>
+                    <td th:text ="${task.date_end}"></td>
+                    <td th:text ="${task.actual_dateEnded}"></td>
+                    <td th:text ="${task.expected_duration}"></td>
+                    <td th:text ="${task.actual_duration}"></td>
+                    <td th:text ="${task.expected_effort}"></td>
+                    <td th:text ="${task.actual_effort}"></td>
+                    <td th:text ="${task.resource_assign}"></td>
+                    <td th:text ="${task.status}"></td>
+
+
+                    <td>
+
+                        <a th:href = "@{/projects/edit/tasks/edit/{id}(id=${task.id})}" class = "btn2 btn-primary">Update</a>
+                        <a th:href = "@{/projects/edit/tasks/{id}(id=${task.id})}" class = "btn3 btn-danger">Delete</a>
+                    </td>
+                </tr>
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</body>
+</html>

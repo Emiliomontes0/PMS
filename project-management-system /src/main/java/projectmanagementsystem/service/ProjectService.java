@@ -11,5 +11,4 @@ public interface ProjectService {
     Project getProjectById(Long id);
     Project updateProject(Project project);
     void deleteProjectById(Long id);
-    //void addRequirementToProject(Long id, Requirement requirement);
 }
