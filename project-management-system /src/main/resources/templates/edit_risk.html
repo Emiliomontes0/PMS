@@ -34,7 +34,8 @@
     <div class = "col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
         <h1 Class = "text-center">Update Risk</h1>
         <div class = "card-body">
-            <form th:action="@{/projects/edit/risks/edit/{id}(id=${risk.id})}" th:object = "${risk}" method = "POST">
+            <form th:action="@{/projects/edit/risks/edit/{id}(id=${risk.id})}" th:object = "${risk}" method = "POST"><!--PATHING FOR ONCE THE FORM IS FILE WHERE THE NEXT LOCATION WILL BE FOR THE USER -->
+                <!-- ALL OF THE STUFF BELOW IS BASIC FORM HTML AND THE TH:FIELD ARE PART OF THYMELEAF THAT TAKES INPUT AND SENDS IT BACK TO CONTROLLER CLASS-->
 
                 <div class = "form-group">
                     <label>Risk Name</label>

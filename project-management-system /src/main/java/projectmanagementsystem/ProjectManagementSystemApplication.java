@@ -13,6 +13,7 @@ public class ProjectManagementSystemApplication implements CommandLineRunner {
 	public static void main(String[] args) {
 		SpringApplication.run(ProjectManagementSystemApplication.class, args);
 	}
+	//USES SPRING BOOT TO LAUNCH A LOCAL SERVER WHEN RUNNING MAIN CLASS
 
 	@Autowired
 	private ProjectRepository projectRepository;

@@ -3,7 +3,7 @@ import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
-
+//LOOK AT PROJECT.JAVA FOR EXPLANATION FOR ALL CONTEXT
 @Entity
 @Table(name = "Task")
 public class Task {

@@ -2,13 +2,16 @@ package projectmanagementsystem.entity;
 
 import jakarta.persistence.*;
 
+//ALL OF THE FUNCTIONS ARE VERY SIMILAR TO THE OTHER CLASSES LOOK AT PROJECT.JAVA FOR ALL KIND OF EXPLINATION
+//ALL THE YELLOW TEXT ARE ANNOTATION
+//THE PURPOSE OF ANNOTATION EXTRA INFORMATION TO THE COMPILER
 @Entity
-@Table(name = "Action_item")
+@Table(name = "Action_item")//ANNOTATION HERE TELL COMPILER TO CREATE A TABLE IN SQL
 public class Action_item {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)//ANNOTATIONS HERE TELLS THE COMPILER THAT ITS IS A ID AND HOW TO GENERATE THE ID
     private long id;
-    @Column(name = "action_name", nullable = false)
+    @Column(name = "action_name", nullable = false)//CREATE THE COLUMNS IN THE TABLE OF ACTION_ITEMS
     private String action_item_name;
     @Column(name = "description")
     private String description;
@@ -24,8 +27,8 @@ public class Action_item {
     private String resource_assign;
     @Column(name = "status")
     private String status;
-    @ManyToOne(cascade = CascadeType.ALL)//this is correct
-    @JoinColumn(name = "project_id", referencedColumnName = "id")//this is correct
+    @ManyToOne(cascade = CascadeType.ALL)//SET THE RELATION WITH ANNOTATIONS
+    @JoinColumn(name = "project_id", referencedColumnName = "id")//THIS IS HOW THE FOREIGN KEY IS MADE
     private Project project;
 
     public Action_item(){
@@ -36,7 +39,7 @@ public class Action_item {
         this.action_item_name = action_item_name;
         this.description = description;
     }
-
+    //BASIC GETTER AND SETTERS FOR ALL VARIABLES
     public String getDescription() {
         return description;
     }

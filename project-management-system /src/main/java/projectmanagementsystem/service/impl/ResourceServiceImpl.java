@@ -7,6 +7,7 @@ import projectmanagementsystem.repository.ResourceRepository;
 import projectmanagementsystem.service.ResourceService;
 
 import java.util.List;
+//LOOK AT ACTION ITEMS FOR EXPLANATION FOR FILE
 @Service
 public class ResourceServiceImpl implements ResourceService{
     private ResourceRepository resourceRepository;

@@ -1,7 +1,7 @@
 package projectmanagementsystem.entity;
 
 import jakarta.persistence.*;
-
+//LOOK AT PROJECT.JAVA FOR EXPLANATION FOR ALL CONTEXT
 @Entity
 @Table(name = "Risk")
 public class Risk {

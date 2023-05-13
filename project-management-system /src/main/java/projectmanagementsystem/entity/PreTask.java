@@ -1,6 +1,7 @@
 package projectmanagementsystem.entity;
 import jakarta.persistence.*;
-
+//LOOK AT PROJECT.JAVA FOR EXPLANATION FOR ALL CONTEXT
+//CODE FOR PREDECCESSOR TASK BUT WAS NOT ABLE TO IMPLEMENT
 @Entity
 @Table(name = "PreTask")
 public class PreTask {
@@ -32,9 +33,8 @@ public class PreTask {
     @Column(name = "status")
     private String status;
 
-    //pred task and succesor from update task button and move to its own page
-    @ManyToOne(cascade = CascadeType.ALL)//this is correct
-    @JoinColumn(name = "task_id", referencedColumnName = "id")//this is correct
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "task_id", referencedColumnName = "id")
     private Task task;
     public PreTask(){
 

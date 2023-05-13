@@ -24,12 +24,12 @@ import projectmanagementsystem.service.RequirementService;
 import projectmanagementsystem.service.PreTaskService;
 import projectmanagementsystem.service.SucTaskService;
 
-import javax.swing.*;
 
+//this is the main class that connect with the UI and processes request from the User
 
 @Controller
 public class ProjectController {
-    private Long pid;
+    private Long pid; // to save project Id While modify other functions with a project
     private Long tid;
 
     public Long getId() {
@@ -55,34 +55,34 @@ public class ProjectController {
         this.projectService = projectService;
     }
 
-    @GetMapping("/projects")
+    @GetMapping("/projects")//gets the mapping from the UI
     public String listProjects(Model model) {
         model.addAttribute("projects", projectService.getAllProjects());
         return "projects";
     }
 
-    @GetMapping("/projects/new")
+    @GetMapping("/projects/new")// Gets mapping for creating a new project
     public String createProjectForm(Model model) {
         Project project = new Project();
         model.addAttribute("project", project);
         return "create_project";
     }
 
-    @PostMapping("/projects")
+    @PostMapping("/projects")//Save project that was created in the new projects
     public String saveProject(@ModelAttribute("project") Project project) {
         projectService.saveProjects(project);
         return "redirect:/projects";
 
     }
 
-    @GetMapping("/projects/edit/{id}")
+    @GetMapping("/projects/edit/{id}")//gets the id of the project to modify it
     public String editProjectForm(@PathVariable Long id, Model model) {
         model.addAttribute("project", projectService.getProjectById(id));
-        this.pid = id;
-        return "edit_project";
+        this.pid = id;//saves the project id For later uses to keep new data relational
+        return "edit_project";//file of where the edit proccess is contain
     }
 
-    @PostMapping("/projects/{id}")
+    @PostMapping("/projects/{id}")//grabs all attributes of the secleted object and displays it to the user which also allows user to modify attributs
     public String updateProject(@PathVariable Long id,
                                 @ModelAttribute("project") Project project, Model model) {
 
@@ -93,11 +93,11 @@ public class ProjectController {
         existingProject.setDescription(project.getDescription());
         existingProject.setStatus(project.getStatus());
         pid = null;
-        projectService.updateProject(existingProject);
-        return "redirect:/projects";
+        projectService.updateProject(existingProject);//method use to save project in the database
+        return "redirect:/projects";//Once the modifacations are completed it returns back to the display page
     }
 
-    @GetMapping("/projects/{id}")
+    @GetMapping("/projects/{id}")//grabs id of the selected project to delete all data related to it
     public String deleteProject(@PathVariable Long id) {
         projectService.deleteProjectById(id);
         return "redirect:/projects";
@@ -115,7 +115,7 @@ public class ProjectController {
         }
 
         @GetMapping("/projects/edit/requirements")//path
-        public String listRequirements(Model model) {// make it, so it only display the associated requirements to project
+        public String listRequirements(Model model) {
             model.addAttribute("requirements", requirementService.getAllRequirementsById(pid));
             return "Requirements";
         }
@@ -127,11 +127,11 @@ public class ProjectController {
             return "create_requirement";//path
         }
 
-        @PostMapping("/projects/edit/requirements")//add the project id to this  in the create_requirements
+        @PostMapping("/projects/edit/requirements")//The Location in which the information is posted
         public String saveRequirement(@ModelAttribute("requirement") Requirement requirement) {
-            requirementService.saveRequirements(requirement);
+            requirementService.saveRequirements(requirement);//saves the requirement to requirement table
             Project project = projectService.getProjectById(pid);
-            project.assignRequirement(requirement);
+            project.assignRequirement(requirement);//assign requirement to the project and saves it in a List
             projectService.updateProject(project);
             return "redirect:/projects/edit/requirements";//return page
         }
@@ -159,7 +159,7 @@ public class ProjectController {
         }
 
 
-        @GetMapping("/projects/edit/requirements/{id}")//getting pathing of new requirements
+        @GetMapping("/projects/edit/requirements/{id}")
         public String deleteRequirement(@PathVariable Long id) {
             requirementService.deleteRequirementById(id);
             return "redirect:/projects/edit/requirements";
@@ -243,7 +243,7 @@ public class ProjectController {
         }
     }
     @Controller
-    public class PreTaskController {
+    public class PreTaskController {// here is the code for the predesuccors task but was not able to make it functional
         private PreTaskService pretaskService;
         private TaskService taskService;
         public PreTaskController(PreTaskService pretaskService, TaskService taskservice) {
@@ -320,7 +320,7 @@ public class ProjectController {
     }
 
     @Controller
-    public class SucTaskController {
+    public class SucTaskController {//Code for the successor Task but was not able to get it functional
         private SucTaskService suctaskService;
         private TaskService taskService;
         public SucTaskController(SucTaskService suctaskService) {
@@ -462,7 +462,7 @@ public class ProjectController {
         }
 
 
-        @GetMapping("/projects/edit/action_items/{id}")//getting pathing of new requirements
+        @GetMapping("/projects/edit/action_items/{id}")
         public String deleteAction_item(@PathVariable Long id){
             action_itemService.deleteAction_itemById(id);
             return "redirect:/projects/edit/action_items";

@@ -1,6 +1,7 @@
 package projectmanagementsystem.entity;
 import jakarta.persistence.*;
-
+//LOOK AT PROJECT.JAVA FOR EXPLANATION FOR ALL CONTEXT
+//CODE FOR ALL SUCCESSOR TASK BUT WAS NOT ABLE TO IMPLEMENT FULLY
 @Entity
 @Table(name = "SucTask")
 public class SucTask {

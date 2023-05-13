@@ -8,6 +8,7 @@ import projectmanagementsystem.repository.RiskRepository;
 import projectmanagementsystem.service.RiskService;
 
 import java.util.List;
+//LOOK AT ACTION ITEMS FOR EXPLANATION FOR FILE
 @Service
 public class RiskServiceImpl implements RiskService{
     private RiskRepository riskRepository;

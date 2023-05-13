@@ -3,15 +3,16 @@ package projectmanagementsystem.entity;
 import jakarta.persistence.*;
 import java.util.List;
 import java.util.ArrayList;
+//ALL THE YELLOW TEXT ARE ANNOTATION
+//THE PURPOSE OF ANNOTATION EXTRA INFORMATION TO THE COMPILER
 @Entity
-@Table(name = "project")
+@Table(name = "project")//ANNOTATION HERE TELL COMPILER TO CREATE A TABLE IN SQL
 public class Project {
-    //creating table in database using java
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)//ANNOTATIONS HERE TELLS THE COMPILER THAT ITS IS A ID AND HOW TO GENERATE THE ID
     private long id;
 
-    @Column(name = "pm_name", nullable = false)
+    @Column(name = "pm_name", nullable = false)//CREATE THE COLUMNS IN THE TABLE OF ACTION_ITEMS
     private String pmName;
     @Column(name = "project_name")
     private String projectName;
@@ -20,11 +21,11 @@ public class Project {
     @Column(name = "status")
     private String status;
 
-
-    @OneToMany(targetEntity = Requirement.class, cascade = CascadeType.ALL)//this is correct
-    @JoinColumn(name = "pr_key", referencedColumnName = "id")//this is correct
-    private List<Requirement> assignRequirement = new ArrayList<>();
-
+    //ALL LIST BELOW ARE FOR SETTING RELATION BETWEEN FUNCTIONS AND THEY ARE IMPLEMENTED USING AN ARRAYLIST
+    @OneToMany(targetEntity = Requirement.class, cascade = CascadeType.ALL)//TARGETS THE FUNCTION AND CREATES A KEY USING JOINCOLUMN
+    @JoinColumn(name = "pr_key", referencedColumnName = "id")
+    private List<Requirement> assignRequirement = new ArrayList<>();//ALL REQUIREMENT RELATED TO PROJECT ARE STORE HERE WHEN DATA IS TRANSFER FROM THE DATABASE
+                                                                    //ALL THE REST OF THE DETAILS BELOW HAVE THE SAME CONTEXT
     @OneToMany(targetEntity = Task.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "pt_key", referencedColumnName = "id")
     private List<Task> assignTask = new ArrayList<>();
@@ -44,7 +45,7 @@ public class Project {
     @JoinColumn(name = "pa_key", referencedColumnName = "id")
     private List<Action_item> assignAction_item = new ArrayList<>();
 
-
+    //CONSTRUCTOR OF PROJECT CLASS
     public Project(){
 
     }
@@ -54,7 +55,7 @@ public class Project {
         this.projectName = projectName;
         this.description=description;
     }
-
+    //BASIC GETTER AND SETTER METHODS BELOW FOR ALL VARIABLES
     public long getId() {
         return id;
     }

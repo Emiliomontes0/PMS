@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeLeaf.org">
+<html xmlns:th="http://www.thymeLeaf.org"><!-- THIS IS WHAT ALLOWS COMMUNICATION BETWEEN UI AND MIDDLE WARE -->
 <meta lang ="ISO-8859-1">
 <head>
     <meta charset="UTF-8">
     <title>Project Management System</title>
+    <!-- BELOW IS WHAT I USED TO CREATE TEMPLATES FOR THE UI AND ALSO MODIFY THE CSS-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
           crossorigin="anonymous">
@@ -41,7 +42,7 @@
 
         <div class = "row">
             <div class = col-lg-3>
-                <a th:href = "@{/projects/edit/risks/new}" class = "btn btn-primary btn-sm mb-3"> Add risk</a>
+                <a th:href = "@{/projects/edit/risks/new}" class = "btn btn-primary btn-sm mb-3"> Add risk</a><!--THE PATHING AND THE BUTTON TO CREATE A NEW OBJECT-->
             </div>
         </div>
 
@@ -72,7 +73,7 @@
                     <input type="button" class = "return" value="Return     " onclick="history.go(-1)">
                 </form>
             </div>
-            <table class = "table table-striped table-bordered table-dark">
+            <table class = "table table-striped table-bordered table-dark"><!-- THIS IS THE TABLE USED TO DISPLAY ALL OBJECT STORE-->
                 <thead>
                 <tr>
                     <th> Risk Name</th>
@@ -92,7 +93,7 @@
                 <tbody>
 
 
-                <tr th:each = "risk: ${risks}">
+                <tr th:each = "risk: ${risks}"><!-- THIS IS FUCNTIONS PART OF THYMELEAF THAT ITERATES THROUGH ALL DATA SENT HERE AND DISPLAYS WHAT IS AVALAIABLE-->
                     <td th:text ="${risk.risk_name}"></td>
                     <td th:text ="${risk.description}"></td>
                     <td th:text ="${risk.category}"></td>
@@ -105,8 +106,8 @@
 
                     <td>
 
-                        <a th:href = "@{/projects/edit/risks/edit/{id}(id=${risk.id})}" class = "btn2 btn-primary">Update</a>
-                        <a th:href = "@{/projects/edit/risks/{id}(id=${risk.id})}" class = "btn3 btn-danger">Delete</a>
+                        <a th:href = "@{/projects/edit/risks/edit/{id}(id=${risk.id})}" class = "btn2 btn-primary">Update</a><!--BUTTON AND PATHING FOR UPDATE-->
+                        <a th:href = "@{/projects/edit/risks/{id}(id=${risk.id})}" class = "btn3 btn-danger">Delete</a><!-- BUTTON AND PATHING FOR DELETE-->
                     </td>
                 </tr>
 
